@@ -1,8 +1,26 @@
 {
-  "name": "core",
+  "name": "promoboss-client-core",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@gitlab.com:Nihomaris/promoboss-client-core.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/Nihomaris/promoboss-client-core.git"
+  },
   "author": "Nih <Nihomaris@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "description": "Redux core for promoboss service",
+  "bugs": {
+    "url": "https://gitlab.com/Nihomaris/promoboss-client-core/issues"
+  },
+  "homepage": "https://gitlab.com/Nihomaris/promoboss-client-core#README",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Redux",
+    "core",
+    "for",
+    "promoboss",
+    "service"
+  ]
 }
