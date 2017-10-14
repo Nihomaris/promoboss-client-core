@@ -5,9 +5,20 @@ get and show client list of orders
 request params: 
 - sid 
 */
-export const getOrdersList = () => {
+export const getOrdersList = (data) => {
+	console.log('action: ', data)
 	return dispatch => {
-		dispatch({type: 'SHOW_ORDERS_LIST'})
+		fetch('/orders.get',
+			{
+				method: 'post',
+				// body: JSON.stringify({"sid": data.sid}),
+				body: JSON.stringify({"sid": "f84252d50649458563d53e0f0232519e74451657"}),
+				credentials: "same-origin",
+			}) 
+			.then((res) => { return res.json() })
+			.then((data) => { console.log(data) })
+			.catch((err) => { console.error('Ошибка: ', err) })
+		// dispatch({type: 'SHOW_ORDERS_LIST'})
 	}
 }
 
@@ -20,7 +31,17 @@ request params:
 */
 export const showOrderDetail = (data) => {
 	return dispatch => {
-		dispatch({type: 'SHOW_ORDER_DETAIL'})
+		fetch('/order.get',
+			{
+				method: 'post',
+				// body: JSON.stringify({"sid": data.sid, "order_id": data.order_id}),
+				body: JSON.stringify({"sid": "f84252d50649458563d53e0f0232519e74451657", "order_id": 1}),
+				credentials: "same-origin",
+			}) 
+			.then((res) => { return res.json() })
+			.then((data) => { console.log(data) })
+			.catch((err) => { console.error('Ошибка: ', err) })
+		// dispatch({type: 'SHOW_ORDER_DETAIL'})
 	}
 }
 
@@ -33,7 +54,17 @@ request params:
 */
 export const showOrderRouting = (data) => {
 	return dispatch => {
-		dispatch({type: 'SHOW_ORDER_ROUTING'})
+		fetch('/routing.get',
+			{
+				method: 'post',
+				// body: JSON.stringify({"sid": data.sid, "order_id": data.order_id}),
+				body: JSON.stringify({"sid": "f84252d50649458563d53e0f0232519e74451657", "order_id": 1}),
+				credentials: "same-origin",
+			}) 
+			.then((res) => { return res.json() })
+			.then((data) => { console.log(data) })
+			.catch((err) => { console.error('Ошибка: ', err) })
+		// dispatch({type: 'SHOW_ORDER_ROUTING'})
 	}
 }
 
@@ -46,7 +77,17 @@ request params:
 */
 export const cancelOrder = (data) => {
 	return dispatch => {
-		dispatch({type: 'CANCEL_ORDER'})
+		fetch('/order.delete',
+			{
+				method: 'post',
+				// body: JSON.stringify({"sid": data.sid, "order_id": data.order_id}),
+				body: JSON.stringify({"sid": "f84252d50649458563d53e0f0232519e74451657", "order_id": 1}),
+				credentials: "same-origin",
+			}) 
+			.then((res) => { return res.json() })
+			.then((data) => { console.log(data) })
+			.catch((err) => { console.error('Ошибка: ', err) })
+		// dispatch({type: 'CANCEL_ORDER'})
 	}
 }
 
@@ -58,7 +99,7 @@ request params:
 */
 export const getOrderPrice = (data) => {
 	return dispatch => {
-		dispatch({type: 'GET_ORDER_PRICE'})
+		// dispatch({type: 'GET_ORDER_PRICE'})
 	}
 }
 
@@ -77,7 +118,35 @@ request params:
 */
 export const createOrder = (data) => {
 	return dispatch => {
-		dispatch({type: 'CREATE_ORDER'})
+		fetch('/order.create',
+			{
+				method: 'post',
+				body: JSON.stringify({
+					"sid": data.sid,
+					"schedule": data.schedule,
+					"people": data.people,
+					"stock_address": data.stock_address,
+					"stock_coordinates": data.stock_coordinates,
+					"work_address": data.work_address,
+					"work_coordinates": data.work_coordinates,
+					"comment": data.comment || ''
+				}),
+				/*body: JSON.stringify({
+					"sid": "f84252d50649458563d53e0f0232519e74451657",
+					"schedule": [{start: 1488832113, end: 1488872113}],
+					"people": 1,
+					"stock_address": "Tupoleva 15",
+					"stock_coordinates": {lat: 11.11, lgn: 22.111},
+					"work_address": "Tupoleva 27",
+					"work_coordinates": {lat: 11.11, lgn: 22.111},
+					"comment": "Тест"
+				}),*/
+				credentials: "same-origin",
+			}) 
+			.then((res) => { return res.json() })
+			.then((data) => { console.log(data) })
+			.catch((err) => { console.error('Ошибка: ', err) })
+		// dispatch({type: 'CREATE_ORDER'})
 	}
 }
 
@@ -96,6 +165,25 @@ request params:
 */
 export const updateOrder = (data) => {
 	return dispatch => {
-		dispatch({type: 'UPDATE_ORDER'})
+		fetch('/order.edit',
+			{
+				method: 'post',
+				body: JSON.stringify({
+					"sid": data.sid,
+					"id": data.order_id,
+					"schedule": data.schedule,
+					"people": data.people,
+					"stock_address": data.stock_address,
+					"stock_coordinates": data.stock_coordinates,
+					"work_address": data.work_address,
+					"work_coordinates": data.work_coordinates,
+					"comment": data.comment || ''
+				}),
+				credentials: "same-origin",
+			}) 
+			.then((res) => { return res.json() })
+			.then((data) => { console.log(data) })
+			.catch((err) => { console.error('Ошибка: ', err) })
+		// dispatch({type: 'UPDATE_ORDER'})
 	}
 }

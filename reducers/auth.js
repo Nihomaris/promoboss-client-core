@@ -1,12 +1,15 @@
-const auth = (state = {}, action) => {
+import { authState } from '../config/init-state';
+
+console.log(authState)
+
+const auth = (state = authState, action) => {
 
 	if(action.type === 'SIGN_IN') {
-		console.log('Reg')
-		// return {...state, sid: 'nih'}
+		return state;
 	}
 
 	if(action.type === 'LOG_IN') {
-		console.log('Log')
+		return (Object.assign({}, state, {sid: action.payload.sid, user: action.payload.user}))
 	}
 
 	return state;
