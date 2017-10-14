@@ -6,7 +6,7 @@ request params:
 { "login": "9276123460" }
 */
 export const signIn = (data) => {
-	console.log('action: ', data)
+
 	return dispatch => {
 		fetch('/sign',
 			{
@@ -15,9 +15,8 @@ export const signIn = (data) => {
 				credentials: "same-origin",
 			}) 
 			.then((res) => { return res.json() })
-			.then((data) => { console.log(data) })
+			.then((data) => { dispatch({type: 'SIGN_IN'}) })
 			.catch((err) => { console.error('Ошибка: ', err) })
-		// dispatch({type: 'SIGN_IN'})
 	}
 }
 
@@ -50,8 +49,7 @@ export const logIn = (data) => {
 /*
 logout
 */
-export const logOut = (data) => {
-	console.log('action: ', data)
+export const logOut = () => {
 	return dispatch => {
 		dispatch({type: 'LOG_OUT'})
 	}

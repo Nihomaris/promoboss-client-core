@@ -1,8 +1,12 @@
 export const authState = {
-	sid: false,
-	user: {}
+	sid: null,
+	user: null
 }
 
-export const orderState = {}
+export const orderState = {
+	orders: null,
+	order_detail: null,
+	order_routing: null
+}
 
  

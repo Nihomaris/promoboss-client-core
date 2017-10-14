@@ -1,7 +1,5 @@
 import { authState } from '../config/init-state';
 
-console.log(authState)
-
 const auth = (state = authState, action) => {
 
 	if(action.type === 'SIGN_IN') {
@@ -9,7 +7,11 @@ const auth = (state = authState, action) => {
 	}
 
 	if(action.type === 'LOG_IN') {
-		return (Object.assign({}, state, {sid: action.payload.sid, user: action.payload.user}))
+		return Object.assign({}, state, {sid: action.payload.sid, user: action.payload.user});
+	}
+
+	if(action.type === 'LOG_OUT') {
+		return Object.assign({}, state, {sid: null, user: null});
 	}
 
 	return state;

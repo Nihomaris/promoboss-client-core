@@ -4,7 +4,8 @@ import order from './order'
 import auth from './auth'
 
 const redusers = combineReducers({
-    auth
+    auth,
+    order
 })
 
 

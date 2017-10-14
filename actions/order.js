@@ -16,9 +16,12 @@ export const getOrdersList = (data) => {
 				credentials: "same-origin",
 			}) 
 			.then((res) => { return res.json() })
-			.then((data) => { console.log(data) })
+			.then((data) => { 
+				if(data.response.status === 1) {
+					dispatch({type: 'SHOW_ORDERS_LIST', payload: data.response.orders}) 
+				}
+			})
 			.catch((err) => { console.error('Ошибка: ', err) })
-		// dispatch({type: 'SHOW_ORDERS_LIST'})
 	}
 }
 
@@ -39,9 +42,13 @@ export const showOrderDetail = (data) => {
 				credentials: "same-origin",
 			}) 
 			.then((res) => { return res.json() })
-			.then((data) => { console.log(data) })
+			.then((data) => { 
+				if(data.response.status === 1) {
+					dispatch({type: 'SHOW_ORDER_DETAIL', payload: data.response.order}) 
+				}
+			})
 			.catch((err) => { console.error('Ошибка: ', err) })
-		// dispatch({type: 'SHOW_ORDER_DETAIL'})
+		
 	}
 }
 
@@ -62,9 +69,13 @@ export const showOrderRouting = (data) => {
 				credentials: "same-origin",
 			}) 
 			.then((res) => { return res.json() })
-			.then((data) => { console.log(data) })
+			.then((data) => { 
+				console.log(data)
+				if(data.status === 1) {
+					dispatch({type: 'SHOW_ORDER_ROUTING', payload: data.routing})
+				} 
+			})
 			.catch((err) => { console.error('Ошибка: ', err) })
-		// dispatch({type: 'SHOW_ORDER_ROUTING'})
 	}
 }
 
