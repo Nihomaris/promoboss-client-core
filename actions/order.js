@@ -1,4 +1,14 @@
+import {
+	SHOW_ORDERS_LIST,
+	SHOW_ORDER_DETAIL,
+	CANCEL_ORDER,
+	SHOW_ORDER_ROUTING,
+	GET_ORDER_PRICE,
+	CREATE_ORDER,
+	UPDATE_ORDER
+	} from '../lib/constants';
 
+import { Host } from '../config';
 /* 
 get and show client list of orders
 
@@ -8,7 +18,7 @@ request params:
 export const getOrdersList = (data) => {
 	console.log('action: ', data)
 	return dispatch => {
-		fetch('/orders.get',
+		fetch( Host+'/orders.get',
 			{
 				method: 'post',
 				// body: JSON.stringify({"sid": data.sid}),
@@ -18,7 +28,7 @@ export const getOrdersList = (data) => {
 			.then((res) => { return res.json() })
 			.then((data) => { 
 				if(data.response.status === 1) {
-					dispatch({type: 'SHOW_ORDERS_LIST', payload: data.response.orders}) 
+					dispatch({type: SHOW_ORDERS_LIST, payload: data.response.orders}) 
 				}
 			})
 			.catch((err) => { console.error('Ошибка: ', err) })
@@ -34,7 +44,7 @@ request params:
 */
 export const showOrderDetail = (data) => {
 	return dispatch => {
-		fetch('/order.get',
+		fetch( Host+'/order.get',
 			{
 				method: 'post',
 				// body: JSON.stringify({"sid": data.sid, "order_id": data.order_id}),
@@ -44,7 +54,7 @@ export const showOrderDetail = (data) => {
 			.then((res) => { return res.json() })
 			.then((data) => { 
 				if(data.response.status === 1) {
-					dispatch({type: 'SHOW_ORDER_DETAIL', payload: data.response.order}) 
+					dispatch({type: SHOW_ORDER_DETAIL, payload: data.response.order}) 
 				}
 			})
 			.catch((err) => { console.error('Ошибка: ', err) })
@@ -61,7 +71,7 @@ request params:
 */
 export const showOrderRouting = (data) => {
 	return dispatch => {
-		fetch('/routing.get',
+		fetch( Host+'/routing.get',
 			{
 				method: 'post',
 				// body: JSON.stringify({"sid": data.sid, "order_id": data.order_id}),
@@ -72,7 +82,7 @@ export const showOrderRouting = (data) => {
 			.then((data) => { 
 				console.log(data)
 				if(data.status === 1) {
-					dispatch({type: 'SHOW_ORDER_ROUTING', payload: data.routing})
+					dispatch({type: SHOW_ORDER_ROUTING, payload: data.routing})
 				} 
 			})
 			.catch((err) => { console.error('Ошибка: ', err) })
@@ -88,7 +98,7 @@ request params:
 */
 export const cancelOrder = (data) => {
 	return dispatch => {
-		fetch('/order.delete',
+		fetch( Host+'/order.delete',
 			{
 				method: 'post',
 				// body: JSON.stringify({"sid": data.sid, "order_id": data.order_id}),
@@ -98,7 +108,7 @@ export const cancelOrder = (data) => {
 			.then((res) => { return res.json() })
 			.then((data) => { console.log(data) })
 			.catch((err) => { console.error('Ошибка: ', err) })
-		// dispatch({type: 'CANCEL_ORDER'})
+		// dispatch({type: CANCEL_ORDER})
 	}
 }
 
@@ -129,7 +139,7 @@ request params:
 */
 export const createOrder = (data) => {
 	return dispatch => {
-		fetch('/order.create',
+		fetch( Host+'/order.create',
 			{
 				method: 'post',
 				body: JSON.stringify({
@@ -176,7 +186,7 @@ request params:
 */
 export const updateOrder = (data) => {
 	return dispatch => {
-		fetch('/order.edit',
+		fetch( Host+'/order.edit',
 			{
 				method: 'post',
 				body: JSON.stringify({
